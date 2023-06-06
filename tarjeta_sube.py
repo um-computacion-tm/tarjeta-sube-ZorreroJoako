@@ -36,8 +36,8 @@ class Sube:
         if self.estado == DESACTIVADO:
             raise UsuarioDesactivadoException()
         else:
-            if self.saldo in DESCUENTOS.keys():
-                if self.saldo==self.saldo - (PRECIO_TICKET * DESCUENTOS.get(self.grupo_beneficiario)):
+            if self.grupo_beneficiario in DESCUENTOS.keys():
+                if self.saldo >= (PRECIO_TICKET * DESCUENTOS.get(self.grupo_beneficiario)):
                     self.saldo-= (PRECIO_TICKET * DESCUENTOS.get(self.grupo_beneficiario))
                 else:
                     raise NoHaySaldoException()
@@ -48,8 +48,8 @@ class Sube:
                     raise NoHaySaldoException()
             
     def cambiar_estado(self,estado):
-        if self.estado != "pendiente":
-            self.estado=estado
-        else:
+        validos=[ACTIVADO,DESACTIVADO]
+        if not estado in validos:
             raise EstadoNoExistenteException()
-        
+        else:
+            self.estado=estado

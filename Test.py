@@ -92,7 +92,7 @@ class TestSube(unittest.TestCase):
         estado = 'pendiente'
         with self.assertRaises(EstadoNoExistenteException):
             self.sube.cambiar_estado(estado)
-            
+
     def test_pagar_pasaje_con_grupo_beneficiario_secundario(self):
         sube = Sube()
         sube.saldo = 42
